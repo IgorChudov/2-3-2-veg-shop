@@ -1,0 +1,126 @@
+.paper {
+  margin-top: 19px;
+  padding: 12px 24px 24px 24px;
+  max-width: 444px;
+  min-width: 301px;
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px 0px #21252914;
+  box-shadow: 0px 1px 2px 0px #2125291a;
+}
+
+.stack {
+  gap: 0;
+}
+
+.empty-cart-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-cart-image {
+  margin-bottom: 24px;
+  max-height: 107px;
+  object-fit: contain;
+}
+
+.empty-cart-text {
+  padding-bottom: 30px;
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-main-6);
+  align-self: center;
+}
+
+.product-group {
+  display: flex;
+  gap: 0;
+  padding-top: 12px;
+  padding-bottom: 16px;
+}
+
+.cart-image {
+  margin-right: 12px;
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+}
+
+.product-action-group {
+  justify-content: space-between;
+  width: 320px;
+}
+
+.product-details-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: auto;
+}
+
+.name {
+  margin-bottom: 4px;
+  font-size: var(--mantine-font-size-md);
+  font-weight: 600;
+  color: #212529;
+}
+
+.weight {
+  margin-left: 12px;
+  font-size: var(--mantine-font-size-xs);
+  color: var(--mantine-color-main-6);
+  font-weight: 400;
+}
+
+.price {
+  font-size: var(--mantine-font-size-lg);
+  font-weight: 600;
+  color: #212529;
+}
+
+.action-group {
+  gap: 12px;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.action {
+  text-align: center;
+  justify-content: space-between;
+  padding: 1px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: var(--mantine-color-main-3);
+  border-radius: 8px;
+}
+
+.action:hover {
+  color: var(--mantine-color-main-6);
+  background-color: var(--mantine-color-main-3);
+}
+
+.action-text {
+  font-size: var(--mantine-font-size-sm);
+}
+
+.divider {
+  width: 80%;
+  align-self: flex-end;
+}
+
+.bottom-divider {
+  margin-top: -1px;
+  width: 100%;
+}
+
+.total {
+  display: flex;
+  padding-top: 12px;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 600;
+  color: #212529;
+}
+
+.total-price {
+  margin-left: auto;
+  color: #212529;
+}

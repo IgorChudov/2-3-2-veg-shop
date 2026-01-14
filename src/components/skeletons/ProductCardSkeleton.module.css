@@ -1,0 +1,18 @@
+.card {
+  --paper-radius: var(--mantine-radius-lg);
+  --card-padding: var(--mantine-spacing-md);
+  max-width: 302px;
+  height: 412px;
+  gap: 0;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  width: 276px;
+  height: 276px;
+  background-color: var(--mantine-color-main-2);
+}

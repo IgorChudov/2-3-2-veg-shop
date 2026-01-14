@@ -1,0 +1,53 @@
+.box {
+  position: sticky;
+  padding: 8px 20px;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.group {
+  padding: 0;
+  justify-content: space-between;
+}
+
+.title {
+  text-align: center;
+  padding-left: 12px;
+  background: var(--mantine-color-main-2);
+  border-radius: 31px;
+  font-size: (--mantine-font-size-xxl);
+  font-weight: 600;
+}
+
+.highlight {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 4px;
+  padding: 2px 12px;
+  background: var(--mantine-color-buttons-6);
+  color: white;
+  border-radius: 31px;
+}
+
+.button {
+  padding: 13px 40px;
+  min-height: 44px;
+}
+
+.badge {
+  background: white;
+  padding: 3px;
+  color: #212529;
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 400;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.button:hover .badge {
+  background: var(--mantine-color-main-4);
+  color: white;
+}
