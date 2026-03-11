@@ -3,9 +3,8 @@ import { screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ProductCard } from "./ProductCard";
 import { CartPopup } from "./CartPopup";
-import { CartProvider } from "../hooks/useCart";
 import type { Product } from "../types/types";
-import { renderWithMantine } from "../test/utils";
+import { renderWithProviders } from "../test/utils";
 
 const product: Product = {
   id: 1,
@@ -16,10 +15,8 @@ const product: Product = {
 
 describe("ProductCard component tests", () => {
   it("should render the product card correctly", () => {
-    renderWithMantine(
-      <CartProvider>
-        <ProductCard product={product} />
-      </CartProvider>
+    renderWithProviders(
+      <ProductCard product={product} />
     );
 
     expect(screen.getByTestId("card-image")).toBeInTheDocument();
@@ -34,10 +31,8 @@ describe("ProductCard component tests", () => {
   });
 
   it("should change quantity of the product by click on action buttons", () => {
-    renderWithMantine(
-      <CartProvider>
-        <ProductCard product={product} />
-      </CartProvider>
+    renderWithProviders(
+      <ProductCard product={product} />
     );
 
     fireEvent.click(screen.getByTestId("plus-action-button"));
@@ -48,11 +43,11 @@ describe("ProductCard component tests", () => {
   })
 
   it("should add the product to the cart", () => {
-    renderWithMantine(
-      <CartProvider>
+    renderWithProviders(
+      <>
         <ProductCard product={product} />
         <CartPopup />
-      </CartProvider>
+      </>
     );
 
     fireEvent.click(screen.getByTestId("add-button"));
@@ -63,11 +58,11 @@ describe("ProductCard component tests", () => {
   })
 
   it("should change quantity of the product in the cart by click on action buttons in the card", () => {
-    renderWithMantine(
-      <CartProvider>
+    renderWithProviders(
+      <>
         <ProductCard product={product} />
         <CartPopup />
-      </CartProvider>
+      </>
     );
     fireEvent.click(screen.getByTestId("add-button"));
     fireEvent.click(screen.getByTestId("plus-action-button"));

@@ -2,11 +2,11 @@
 import { screen } from "@testing-library/react";
 import { expect, it, describe } from "vitest";
 import App from './App'
-import { renderWithMantine } from "../test/utils";
+import { renderWithProviders } from "../test/utils";
 
 describe("App component test", function () {
     it("should render app", async () => {
-    renderWithMantine(
+    renderWithProviders(
         <App />
     );
 

@@ -4,8 +4,7 @@ import { describe, it, expect } from "vitest";
 import { Header } from "./Header";
 import type { Product } from "../types/types";
 import { ProductCard } from "./ProductCard";
-import { CartProvider } from "../hooks/useCart";
-import { renderWithMantine } from "../test/utils";
+import { renderWithProviders } from "../test/utils";
 
 const product: Product = {
   id: 1,
@@ -16,20 +15,16 @@ const product: Product = {
 
 describe("Header component tests", () => {
   it("should render header", () => {
-    renderWithMantine(
-      <CartProvider>
-        <Header />
-      </CartProvider>
+    renderWithProviders(
+      <Header />
     );
     expect(screen.getByText(/Vegetable/i)).toBeInTheDocument();
     expect(screen.getByText(/Cart/i)).toBeInTheDocument();
   });
 
   it("should open and close the cart popup", () => {
-    renderWithMantine(
-      <CartProvider>
-        <Header />
-      </CartProvider>
+    renderWithProviders(
+      <Header />
     );
 
     const button = screen.getByRole("button", { name: /Cart/i });
@@ -42,11 +37,11 @@ describe("Header component tests", () => {
   });
 
   it("should render the quantity badge after adding the product to the cart", () => {
-    renderWithMantine(
-      <CartProvider>
+    renderWithProviders(
+      <>
         <Header />
         <ProductCard product={product} />
-      </CartProvider>
+      </>
     );
 
     const cartBtn = screen.getByTestId("cart-button");

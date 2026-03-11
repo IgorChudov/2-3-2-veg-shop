@@ -4,8 +4,7 @@ import { describe, it, expect } from "vitest";
 import { CartPopup } from "./CartPopup";
 import { ProductCard } from "./ProductCard";
 import type { Product } from "../types/types";
-import { CartProvider } from "../hooks/useCart";
-import { renderWithMantine } from "../test/utils";
+import { renderWithProviders } from "../test/utils";
 
 const product: Product = {
   id: 1,
@@ -16,11 +15,11 @@ const product: Product = {
 
 describe("CartPopup component test", () => {
   it("should render the cart popup correctly", () => {
-    renderWithMantine(
-      <CartProvider>
+    renderWithProviders(
+      <>
         <ProductCard product={product} />
         <CartPopup />
-        </CartProvider>
+      </>
     );
 
     expect(screen.getByTestId("empty-cart-image")).toBeInTheDocument();
@@ -38,11 +37,11 @@ describe("CartPopup component test", () => {
   });
 
   it("should change quantity of the product in the cart by click on action buttons", () => {
-    renderWithMantine(
-        <CartProvider>
-            <ProductCard product={product} />
-            <CartPopup />
-        </CartProvider>
+    renderWithProviders(
+      <>
+        <ProductCard product={product} />
+        <CartPopup />
+      </>
     );
 
     fireEvent.click(screen.getByTestId("add-button"));
@@ -54,11 +53,11 @@ describe("CartPopup component test", () => {
   })
 
   it("should change quantity of the product in the card by click on action buttons in the cart", () => {
-    renderWithMantine(
-        <CartProvider>
-            <ProductCard product={product} />
-            <CartPopup />
-        </CartProvider>
+    renderWithProviders(
+      <>
+        <ProductCard product={product} />
+        <CartPopup />
+      </>
     );
 
     fireEvent.click(screen.getByTestId("add-button"));
@@ -70,11 +69,11 @@ describe("CartPopup component test", () => {
   })
 
   it("should delete the product from the cart if it's quantity < 1", () => {
-    renderWithMantine(
-      <CartProvider>
+    renderWithProviders(
+      <>
         <ProductCard product={product} />
         <CartPopup />
-        </CartProvider>
+      </>
     );
 
     fireEvent.click(screen.getByTestId("add-button"));
