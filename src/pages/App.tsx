@@ -1,26 +1,22 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Container, SimpleGrid, Title } from "@mantine/core";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { selectIsProductsLoading, selectProducts } from "../selectors/selectors";
+import { fetchProducts } from "../reducers/productsSlice";
 import { ProductCard } from "../components/ProductCard";
 import { ProductCardSkeleton } from "../components/skeletons/ProductCardSkeleton";
 import { Header } from "../components/Header";
-import type { Product } from "../types/types";
 import classes from "./App.module.css"
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(selectProducts);
+  const loading = useAppSelector(selectIsProductsLoading);
 
   useEffect(() => {
-    fetch("https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setTimeout(() => {
-          setProducts(data);
-          setLoading(false);
-        }, 1000);
-      });
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <>

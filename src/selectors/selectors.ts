@@ -1,5 +1,5 @@
 import type { RootState } from "../store/store";
-import type { CartItem } from '../types/types';
+import type { CartItem, Product } from '../types/types';
 
 export const selectCartItems = (state: RootState): CartItem[] => state.cart.items;
 
@@ -12,3 +12,11 @@ export const selectProductInCart = (productId: number) => (state: RootState): Ca
 export const selectPopupOpened = (state: RootState): boolean => state.cart.popupOpened;
 
 export const selectProductQuantity = (productId: number) => (state: RootState): number => state.cart.productQuantities[productId] ?? 1;
+
+export const selectProducts = (state: RootState): Product[] => state.products.items;
+
+export const selectProductsStatus = (state: RootState): string => state.products.status;
+
+export const selectProductsError = (state: RootState): string | null => state.products.error;
+
+export const selectIsProductsLoading = (state: RootState): boolean => state.products.status === 'pending';
