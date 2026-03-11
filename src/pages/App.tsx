@@ -4,7 +4,6 @@ import { Container, SimpleGrid, Title } from "@mantine/core";
 import { ProductCard } from "../components/ProductCard";
 import { ProductCardSkeleton } from "../components/skeletons/ProductCardSkeleton";
 import { Header } from "../components/Header";
-import { CartProvider } from "../hooks/useCart";
 import type { Product } from "../types/types";
 import classes from "./App.module.css"
 
@@ -24,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <CartProvider>
+    <>
       <Header />
       <Container className={classes.container}>
         <Title
@@ -41,7 +40,7 @@ function App() {
             ))}
           </SimpleGrid>
       </Container>
-    </CartProvider>
+    </>
   );
 }
 

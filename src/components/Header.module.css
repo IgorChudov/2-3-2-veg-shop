@@ -1,4 +1,5 @@
 .box {
+  position: -webkit-sticky;
   position: sticky;
   padding: 8px 20px;
   top: 0;
@@ -8,7 +9,9 @@
 
 .group {
   padding: 0;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .title {
@@ -16,7 +19,6 @@
   padding-left: 12px;
   background: var(--mantine-color-main-2);
   border-radius: 31px;
-  font-size: (--mantine-font-size-xxl);
   font-weight: 600;
 }
 

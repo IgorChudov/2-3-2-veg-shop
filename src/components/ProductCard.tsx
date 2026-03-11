@@ -1,21 +1,34 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Card, Image, Text, Group, Button, ActionIcon } from "@mantine/core";
-import { useState } from "react";
-import { useCart } from "../hooks/useCart";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { addToCart, increaseQuantity, decreaseQuantity, setProductQuantity } from "../reducers/cartSlice";
+import { selectProductInCart, selectProductQuantity } from "../selectors/selectors";
 import type { Product } from "../types/types";
-import classes from "./ProductCard.module.css";
-import clsx from "clsx";
 import IconMinus from "../assets/minus.svg?react";
 import IconPlus from "../assets/plus.svg?react";
 import CartIcon from "../assets/cart_icon.svg?react";
+import clsx from "clsx";
+import classes from "./ProductCard.module.css";
 
 export function ProductCard({ product }: { product: Product }) {
-  const [qty, setQty] = useState(1);
-  const { addToCart, items, increaseQuantity, decreaseQuantity } = useCart();
-
-  const inCart = items.find((i) => i.id === product.id);
+  const dispatch = useAppDispatch();
+  const inCart = useAppSelector(selectProductInCart(product.id));
+  const qty = useAppSelector(selectProductQuantity(product.id));
 
   const [name, weight] = product.name.split(" - ");
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ product, quantity: qty }));
+    dispatch(setProductQuantity({ productId: product.id, quantity: 1 }));
+  };
+
+  const handleIncrease = () => {
+    dispatch(setProductQuantity({ productId: product.id, quantity: qty + 1}));
+  }
+
+  const handleDecrease = () => {
+    dispatch(setProductQuantity({ productId: product.id, quantity: Math.max(1, qty - 1) }));
+  }
 
   return (
     <Card className={classes.card}>
@@ -35,7 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
         <ActionIcon
           data-testid="minus-action-button"
           className={classes.action}
-          onClick={() => setQty((q) => Math.max(1, q - 1))}
+          onClick={handleDecrease}
           variant="default"
           >
           <IconMinus />
@@ -44,7 +57,7 @@ export function ProductCard({ product }: { product: Product }) {
           <ActionIcon
             data-testid="plus-action-button"
             className={classes.action}
-            onClick={() => setQty((q) => q + 1)}
+            onClick={handleIncrease}
             variant="default"
           >
           <IconPlus />
@@ -55,7 +68,7 @@ export function ProductCard({ product }: { product: Product }) {
               <ActionIcon
                 data-testid="minus-action-button"
                 className={classes.action}
-                onClick={() => decreaseQuantity(product.id)}
+                onClick={() => dispatch(decreaseQuantity(product.id))}
                 variant="default">
               <IconMinus />
               </ActionIcon>
@@ -63,7 +76,7 @@ export function ProductCard({ product }: { product: Product }) {
               <ActionIcon
                 data-testid="plus-action-button"
                 className={classes.action}
-                onClick={() => increaseQuantity(product.id)}
+                onClick={() => dispatch(increaseQuantity(product.id))}
                 variant="default">
               <IconPlus />
               </ActionIcon>
@@ -79,7 +92,7 @@ export function ProductCard({ product }: { product: Product }) {
           color="buttons.6"
           c="buttons.8"
           variant="light"
-          onClick={(() => {addToCart(product, qty)})}>
+          onClick={handleAddToCart}>
             Add to cart
         </Button>
       </Group>

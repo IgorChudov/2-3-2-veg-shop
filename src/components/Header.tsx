@@ -1,15 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Group, Box, Text, Button } from "@mantine/core";
-import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../hooks/redux";
 import { CartPopup } from "./CartPopup";
-import { useCart } from "../hooks/useCart";
-import classes from './Header.module.css'
-import CartIcon from "../assets/cart_icon.svg?react"
+import { togglePopup } from "../reducers/cartSlice";
+import { selectTotalCount, selectPopupOpened } from "../selectors/selectors";
+import CartIcon from "../assets/cart_icon.svg?react";
+import classes from './Header.module.css';
 
 export function Header() {
-  const [opened, setOpened] = useState(false);
-  const { items } = useCart();
-  const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+  const dispatch = useAppDispatch();
+  const totalQuantity = useAppSelector(selectTotalCount);
+  const opened = useAppSelector(selectPopupOpened);
 
   return (
     <Box className={classes.box}>
@@ -26,7 +27,7 @@ export function Header() {
           ) : null}
             rightSection={<CartIcon />}
             color="buttons.6"
-            onClick={() => setOpened((o) => !o)}
+            onClick={() => dispatch(togglePopup())}
           >
               Cart
           </Button>

@@ -1,15 +1,18 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Paper, Group, Text, ActionIcon, Image, Stack, Divider } from "@mantine/core";
-import { useCart } from "../hooks/useCart";
-import classes from "./CartPopup.module.css";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { increaseQuantity, decreaseQuantity, closePopup } from "../reducers/cartSlice";
+import { selectCartItems, selectTotalPrice } from "../selectors/selectors";
 import CartEmpty from "../assets/cart_empty.svg";
 import IconMinus from "../assets/minus.svg?react";
 import IconPlus from "../assets/plus.svg?react";
 import clsx from "clsx";
+import classes from "./CartPopup.module.css";
 
 export function CartPopup () {
-  const { items, totalPrice, increaseQuantity,
-    decreaseQuantity, } = useCart();
+  const dispatch = useAppDispatch();
+  const items = useAppSelector(selectCartItems);
+  const totalPrice = useAppSelector(selectTotalPrice);
 
   return (
     <Paper
@@ -58,7 +61,12 @@ export function CartPopup () {
                 <ActionIcon
                   data-testid="cart-action-minus"
                   className={classes.action}
-                  onClick={() => decreaseQuantity(i.id)}
+                  onClick={() => {
+                    dispatch(decreaseQuantity(i.id));
+                    if (i.quantity === 1) {
+                      dispatch(closePopup());
+                    }
+                  }}
                   variant="default"
                 >
                   <IconMinus />
@@ -67,7 +75,7 @@ export function CartPopup () {
                 <ActionIcon
                   data-testid="cart-action-plus"
                   className={classes.action}
-                  onClick={() => increaseQuantity(i.id)}
+                  onClick={() => dispatch(increaseQuantity(i.id))}
                   variant="default"
                 >
                   <IconPlus />
