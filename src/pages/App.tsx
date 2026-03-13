@@ -4,9 +4,9 @@ import { Container, SimpleGrid, Title } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { selectIsProductsLoading, selectProducts } from "../selectors/selectors";
 import { fetchProducts } from "../reducers/productsSlice";
-import { ProductCard } from "../components/ProductCard";
+import { ProductCard } from "../components/ProductCard/ProductCard";
 import { ProductCardSkeleton } from "../components/skeletons/ProductCardSkeleton";
-import { Header } from "../components/Header";
+import { Header } from "../components/Header/Header";
 import classes from "./App.module.css"
 
 function App() {

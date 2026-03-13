@@ -1,11 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Paper, Group, Text, ActionIcon, Image, Stack, Divider } from "@mantine/core";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { increaseQuantity, decreaseQuantity, closePopup } from "../reducers/cartSlice";
-import { selectCartItems, selectTotalPrice } from "../selectors/selectors";
-import CartEmpty from "../assets/cart_empty.svg";
-import IconMinus from "../assets/minus.svg?react";
-import IconPlus from "../assets/plus.svg?react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { increaseQuantity, decreaseQuantity, closePopup } from "../../reducers/cartSlice";
+import { selectCartItems, selectTotalPrice } from "../../selectors/selectors";
+import CartEmpty from "../../assets/cart_empty.svg";
+import IconMinus from "../../assets/minus.svg?react";
+import IconPlus from "../../assets/plus.svg?react";
 import clsx from "clsx";
 import classes from "./CartPopup.module.css";
 

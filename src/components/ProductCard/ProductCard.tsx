@@ -1,12 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Card, Image, Text, Group, Button, ActionIcon } from "@mantine/core";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { addToCart, increaseQuantity, decreaseQuantity, setProductQuantity } from "../reducers/cartSlice";
-import { selectProductInCart, selectProductQuantity } from "../selectors/selectors";
-import type { Product } from "../types/types";
-import IconMinus from "../assets/minus.svg?react";
-import IconPlus from "../assets/plus.svg?react";
-import CartIcon from "../assets/cart_icon.svg?react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { addToCart, increaseQuantity, decreaseQuantity, setProductQuantity } from "../../reducers/cartSlice";
+import { selectProductInCart, selectProductQuantity } from "../../selectors/selectors";
+import type { Product } from "../../types/types";
+import IconMinus from "../../assets/minus.svg?react";
+import IconPlus from "../../assets/plus.svg?react";
+import CartIcon from "../../assets/cart_icon.svg?react";
 import clsx from "clsx";
 import classes from "./ProductCard.module.css";
 

@@ -2,9 +2,9 @@
 import { screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ProductCard } from "./ProductCard";
-import { CartPopup } from "./CartPopup";
-import type { Product } from "../types/types";
-import { renderWithProviders } from "../test/utils";
+import { CartPopup } from "../CartPopup/CartPopup";
+import type { Product } from "../../types/types";
+import { renderWithProviders } from "../../test/utils";
 
 const product: Product = {
   id: 1,

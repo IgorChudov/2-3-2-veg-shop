@@ -1,10 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Group, Box, Text, Button } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { CartPopup } from "./CartPopup";
-import { togglePopup } from "../reducers/cartSlice";
-import { selectTotalCount, selectPopupOpened } from "../selectors/selectors";
-import CartIcon from "../assets/cart_icon.svg?react";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { CartPopup } from "../CartPopup/CartPopup";
+import { togglePopup } from "../../reducers/cartSlice";
+import { selectTotalCount, selectPopupOpened } from "../../selectors/selectors";
+import CartIcon from "../../assets/cart_icon.svg?react";
 import classes from './Header.module.css';
 
 export function Header() {
